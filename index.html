@@ -11,13 +11,15 @@
       font-family: Calibri, sans-serif;
       text-align: center;
       padding-top: 30px;
-      overflow: hidden;
+      margin: 0;
+      overflow-y: auto;
     }
 
     #container {
       position: relative;
       display: inline-block;
       max-width: 90%;
+      z-index: 2;
     }
 
     #scan-image {
@@ -36,6 +38,7 @@
       pointer-events: none;
       display: none;
       box-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+      z-index: 2;
     }
 
     .glitch-dot {
@@ -45,37 +48,39 @@
       height: 1px;
       pointer-events: none;
       opacity: 0.9;
+      z-index: 2;
     }
 
     #noise {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
+      opacity: 0.08;
       background: url('noise.png') repeat;
       background-size: 200px 200px;
-      opacity: 0.1;
-      animation: noiseScroll 15s linear infinite;
+      display: none;
+      animation: noiseMove 5s linear infinite;
+      z-index: 1;
     }
 
-    @keyframes noiseScroll {
-      0% { background-position: 0 0; }
-      25% { background-position: 50px 100px; }
-      50% { background-position: 100px 200px; }
-      75% { background-position: 150px 300px; }
-      100% { background-position: 200px 400px; }
+    @keyframes noiseMove {
+      from { background-position: 0 0; }
+      to { background-position: 50px 50px; }
     }
 
     audio {
       margin-top: 20px;
       max-width: 90%;
+      z-index: 2;
     }
 
     #error {
       color: red;
       margin-top: 20px;
+      z-index: 2;
     }
   </style>
 </head>
