@@ -21,31 +21,17 @@
       max-width: 90%;
     }
 
+    #scan-wrapper {
+      position: relative;
+    }
+
     #scan-image {
       width: 100%;
       border-radius: 12px;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
       display: block;
-    }
-
-    #scan-line {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: white;
-      pointer-events: none;
-      display: none;
-      box-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
-    }
-
-    .glitch-dot {
-      position: absolute;
-      background-color: red;
-      width: 1px;
-      height: 1px;
-      pointer-events: none;
-      opacity: 0.9;
+      position: relative;
+      z-index: 1;
     }
 
     #noise {
@@ -58,8 +44,30 @@
       opacity: 0.08;
       background: url('noise.png') repeat;
       background-size: 200px 200px;
-      display: none;
       animation: noiseMove 5s linear infinite;
+      z-index: 2;
+    }
+
+    #scan-line {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      pointer-events: none;
+      display: none;
+      box-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+      z-index: 3;
+    }
+
+    .glitch-dot {
+      position: absolute;
+      background-color: red;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 3;
     }
 
     @keyframes noiseMove {
@@ -88,9 +96,11 @@
   </audio>
 
   <div id="container">
-    <div id="noise"></div>
-    <img id="scan-image" src="photo.png" alt="Satellite Pass">
-    <div id="scan-line"></div>
+    <div id="scan-wrapper">
+      <img id="scan-image" src="photo.png" alt="Satellite Pass">
+      <div id="noise"></div>
+      <div id="scan-line"></div>
+    </div>
   </div>
 
   <div id="error"></div>
@@ -99,7 +109,7 @@
     const audio = document.getElementById('audio');
     const scanLine = document.getElementById('scan-line');
     const image = document.getElementById('scan-image');
-    const container = document.getElementById('container');
+    const container = document.getElementById('scan-wrapper');
     const noise = document.getElementById('noise');
     const error = document.getElementById('error');
 
@@ -174,3 +184,4 @@
 
 </body>
 </html>
+
